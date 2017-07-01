@@ -1,0 +1,19 @@
+Learn C The Hard Way: Notes on exercises
+
+1. Hello world, makefile
+3. Formatted printing
+5. Structure of a C program
+6. Types of variables (char, string, int, float, double)
+7. More variables, some math
+8. Sizeof and arrays (initializing char arrays different ways)
+9. Arrays and strings
+10. Arrays of strings, looping
+11. While-loop and boolean expressions
+12. If, else-if, else
+13. Switch statement
+14. Writing and using functions
+15. Pointers (different ways of looping through pointers, getting value vs address)
+16. Structures and pointers to them (Person struct)
+17. Heap and Stack memory allocation (database program)
+18. Pointers to functions (typedef - defining function type that can be passed as argument)
+19. A Simple Object System (C Pre-Processor)

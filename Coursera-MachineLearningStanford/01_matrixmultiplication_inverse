@@ -1,0 +1,25 @@
+# Created by Octave 4.0.3, Tue May 30 09:46:28 2017 PDT <ellenyan@Ellens-MBP>
+# name: A
+# type: matrix
+# rows: 2
+# columns: 2
+ 3 4
+ 2 16
+
+
+# name: ans
+# type: matrix
+# rows: 2
+# columns: 2
+ 0.9999999999999993 -2.220446049250313e-16
+ 0 0.9999999999999998
+
+
+# name: inverseOfA
+# type: matrix
+# rows: 2
+# columns: 2
+ 0.3999999999999998 -0.09999999999999996
+ -0.04999999999999999 0.07499999999999998
+
+

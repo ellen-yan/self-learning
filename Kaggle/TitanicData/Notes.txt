@@ -1,0 +1,24 @@
+20170603 2:16 pm:
+Finished coding gradient descent and ran on the best result (submission_v5).
+Turned out to be worse than using the advanced optimization in MATLAB.
+Submission_v5 still the best (0.7799), where lambda = 10 and new features:
+out = [X(:, :),X(:,3).^0.5, X(:,1).*X(:,3), X(:,4)+X(:,5)]; %
+
+% ===== Adding extra features =====
+
+% Sex-age polynomial feature
+new_f = map_feature(X(:,2),X(:,3));
+out = [out, new_f(:, 3:end)];
+
+new_f = map_feature(X(:,3),X(:,6));
+out = [out, new_f(:, 3:end)];
+
+new_f = map_feature(X(:,2),X(:,6));
+out = [out, new_f(:, 3:end)];
+
+------------------------------------------------------------
+20170604 10:52 am: submission v7 to v11
+Tried adding an extra term (Pclass * Sex) to the first line. v7: Lambda=10: worse.
+v8: Lamda=30; deg=5: better than lambda=10, still the same as the best result.
+v9: Lambda = 30; deg=6: 0.7755. v10: Lambda = 40, deg=5; 0.770.
+v11: Lambda=20, deg=5: 0.78469 (new best)

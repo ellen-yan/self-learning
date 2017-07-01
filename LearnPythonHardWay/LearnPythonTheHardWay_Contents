@@ -1,0 +1,37 @@
+List of exercises from Learn Python the Hard Way (only when files are involved):
+
+1: First program
+2: Comments and pound characters
+3: Numbers and Math
+4: Variables and Names
+5: More Variables and Printing (list of formatters)
+6: Strings and text
+7: More printing
+8: Printing, printing
+9: Printing, printing, printing (triple quotes)
+10: Escape sequences (list of all of them)
+11: Asking questions (raw_input())
+12: Prompting people
+13: Parameters, unpacking, variables (argv, taking in arguments)
+14: Prompting and passing
+15: Reading files
+16: Reading and writing files (truncate, write)
+17: More files
+18: Functions (*args)
+19: More Functions
+20: Files and functions (readline, seek)
+21: Returning values from functions
+(23: Reading other peoples code: github.com, launchpad.net, gitorious.org, sourceforge.net, bitbucket.org)
+24: Summary
+25: Practice running functions in python (e.g. help(ex25) in python interpreter from CL)
+26: Test (Fixing code)
+28: Boolean practice
+29: If statements
+30, 31: If, elif and else
+32: Lists
+33: While loops
+35: Branches - ifs, while loops, various rooms
+37: (No program) Symbol review
+38: Lists (pop, join, append)
+39: Dictionaries, looping over them, get() to check if key exists
+40: Classes
