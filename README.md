@@ -17,8 +17,7 @@ Current contents:
     Status: Incomplete
   
 3. Coursera-MachineLearningStanford
-    Description: Brief introduction to linear and logistic regression, neural networks, support vector machines,
-    unsupervised learning
+    Description: Brief introduction to linear and logistic regression, neural networks, support vector machines, unsupervised learning
     Taught by: Andrew Ng
     Institution: Stanford University
     Status: Incomplete
@@ -33,8 +32,7 @@ Current contents:
     Status: Incomplete
 
 6. LearnPythonTheHardWay
-    Description: Exercises and testing associated with learning from the online version of the book 
-    "Learn Python The Hard Way"
+    Description: Exercises and testing associated with learning from the online version of the book "Learn Python The Hard Way"
     Taught by: (author) Zed Shaw
     Status: Completed (all the parts I care about)
 
