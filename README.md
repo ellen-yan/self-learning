@@ -2,7 +2,7 @@
 last update: July 1, 2017
 Resources and programs from self-learning various topics
 
-Current contents:
+Contents:
 
 1. Coursera-AlgorithmsSpecialization 
     Description: 4-course Algorithms Specialization (divide and conquer, graphs, dynamic programming)
