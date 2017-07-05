@@ -5,6 +5,17 @@ training set.
 Functions
 ---------
 
+normalize(2D numpy.array data, method='stdev') ->
+            2D numpy.array normdata, numpy.array mean, numpy.array scale
+    Given a numpy array "matrix" that is tidy (features in columns,
+    observations in rows) and contains only numbers, returns a matrix that is
+    normalized by either the standard deviation (method='stdev', default)
+    or the range of data (method='range') based on kwarg, where each value
+    has been subtracted by the mean of that column and divided by the
+    method (stdev or range), and returns the two numpy arrays, the first
+    containing the mean of each column and the second containing the stdev
+    or range of each column.
+
 add_polynomial_features(numpy.array X, int power) -> numpy.array X_features
     Returns a feature set with added features such that
     all combinations of existing features are used to
@@ -15,6 +26,41 @@ add_polynomial_features(numpy.array X, int power) -> numpy.array X_features
 
 """
 import numpy as np
+
+def normalize(data, method='stdev'):
+    """
+    Returns a numpy array normalized by column by subtracting
+    the mean and dividing by some scale.
+
+    Parameters
+    ----------
+    data : 1D or 2D numpy array
+        Data to be normalized where features are separated by columns.
+    method : optional, default stdev
+        Specifies the method of normalization in the scaling.
+        'stdev' divides by the standard deviation, 'range' divides
+        by the range of the data.
+
+    Returns
+    -------
+    data : 2D numpy array
+        Normalized data with same dimensions as the given data.
+    mu : 1D numpy array
+        The mean of each column.
+    scale : 1D numpy array
+        The scaling factor of each column.
+    """
+    mu = data.mean(axis=0) # mean by column
+    if method  != 'range':
+        if method != 'stdev':
+            print ('Invalid entry for method kwarg. Used \
+                    std deviation for scaling')
+        scale = data.std(axis=0)
+    else:
+        scale = data.ptp(axis=0)
+
+    return ((data - mu[None, :]) / scale[None, :]), mu, scale
+
 
 def add_polynomial_features(X, power):
     """

@@ -4,17 +4,6 @@ Module for training theta values for logistic regression with regularization.
 Functions
 ---------
 
-normalize(2D numpy.array data, method='stdev') ->
-            2D numpy.array normdata, numpy.array mean, numpy.array scale
-    Given a matrix that is tidy (features in columns, observations
-    in rows) and contains only numbers, returns a matrix that is
-    normalized by either the standard deviation (method='stdev', default)
-    or the range of data (method='range') based on kwarg, where each value
-    has been subtracted by the mean of that column and divided by the
-    method (stdev or range), and returns the two numpy arrays, the first
-    containing the mean of each column and the second containing the stdev
-    or range of each column.
-
 sigmoid(float) -> float
     Given a number, returns the result after applying the sigmoid function
     f(x) = 1 / (1 + exp(-x)).
@@ -74,40 +63,6 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-
-def normalize(data, method='stdev'):
-    """
-    Returns a numpy array normalized by column by subtracting
-    the mean and dividing by some scale.
-
-    Parameters
-    ----------
-    data : 1D or 2D numpy array
-        Data to be normalized where features are separated by columns.
-    method : optional, default stdev
-        Specifies the method of normalization in the scaling.
-        'stdev' divides by the standard deviation, 'range' divides
-        by the range of the data.
-
-    Returns
-    -------
-    data : 2D numpy array
-        Normalized data with same dimensions as the given data.
-    mu : 1D numpy array
-        The mean of each column.
-    scale : 1D numpy array
-        The scaling factor of each column.
-    """
-    mu = data.mean(axis=0) # mean by column
-    if method  != 'range':
-        if method != 'stdev':
-            print ('Invalid entry for method kwarg. Used \
-                    std deviation for scaling')
-        scale = data.std(axis=0)
-    else:
-        scale = data.ptp(axis=0)
-
-    return ((data - mu[None, :]) / scale[None, :]), mu, scale
 
 
 def sigmoid(z):
@@ -254,7 +209,7 @@ def train_logistic(X, initial_theta, y, alpha, l,
     costs = []
 
     # Calculate the initial and second cost and gradients
-    J, grad = cost_function(X, initial_theta, y, l)
+    J, grad = cost_function(X, initial_theta, y, l=l)
     costs.append(J)
     theta = initial_theta - alpha * grad
     J_previous = J
@@ -262,9 +217,8 @@ def train_logistic(X, initial_theta, y, alpha, l,
     # Apply gradients until the cost difference between steps
     # is less than the tolerance limit
     count = 1
-    while ((diff == math.inf) or (diff < -tolerance)) \
-           and count <= max_iter:
-        J, grad = cost_function(X, theta, y, l)
+    while ((diff == math.inf) or (diff < -tolerance)) and count <= max_iter:
+        J, grad = cost_function(X, theta, y, l=l)
         costs.append(J)
 
         # Store the difference between the current cost and
@@ -389,8 +343,8 @@ def train(X, initial_theta, y, num=None, plotcosts=False, outputs=False):
         print(theta)
 
     # Evaluate the cost function for training and cross-validation sets
-    Jtrain, _ = cost_function(X_train, theta, y_train, LAMBDAS[l])
-    Jcv, _ = cost_function(X_cv, theta, y_cv, LAMBDAS[l])
+    Jtrain, _ = cost_function(X_train, theta, y_train, l=LAMBDAS[l])
+    Jcv, _ = cost_function(X_cv, theta, y_cv, l=LAMBDAS[l])
 
     print("The cost function of training set is:", Jtrain)
     print("The cost function of cross-validation set is:", Jcv)
