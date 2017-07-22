@@ -8,6 +8,7 @@ import logistic_regression as lr
 import manipulate_features as mf
 import make_predictions as mp
 import neural_networks as nn
+import neural_networks_general as nng
 
 def simple_logistic_regression():
     """
@@ -90,7 +91,7 @@ def logistic_regression(power=4):
 
 def neural_network():
     """
-    Train a neural network.
+    Train a neural network with one hidden layer.
     """
     # Read in Titanic data into a DataFrame
     df = pd.read_csv('titanic_data_clean1.csv')
@@ -114,12 +115,47 @@ def neural_network():
     X_norm = np.append(np.ones((X_norm.shape[0], 1)), X_norm, axis=1)
 
     # Train theta parameters
-    theta1, theta2, _ = nn.train(X_norm, init_theta1, init_theta2, y)
+    theta1, theta2, _ = nn.train(X_norm, init_theta1, init_theta2, y, alpha=0.005)
 
     # Make a prediction file from the Kaggle test file
     mp.predict_titanic_nn(theta1, theta2)
 
+def neural_network_general():
+    """
+    Train a neural network with any number of hidden layers
+    but only one node in the output layer.
+    """
+    # Read in Titanic data into a DataFrame
+    df = pd.read_csv('titanic_data_clean1.csv')
+
+    # Move result column ('Survived') to another variable
+    y = df['Survived']
+    del df['Survived']
+
+    # Make the values and results numpy arrays
+    y = y.as_matrix()
+    X = df.as_matrix()
+
+    # Normalize values and store mean and std deviation
+    X_norm, mu, sigma = mf.normalize(X)
+
+    # Generate initial theta values randomly
+    init_theta1 = np.random.rand(X_norm.shape[1], X_norm.shape[1] + 1)
+    init_theta2 = np.random.rand(X_norm.shape[1], X_norm.shape[1] + 1)
+    init_theta3 = np.random.rand(X_norm.shape[1] + 1)
+
+    # Add bias intercept
+    X_norm = np.append(np.ones((X_norm.shape[0], 1)), X_norm, axis=1)
+
+    # Train theta parameters
+    thetas, _ = nng.train(X_norm, [init_theta1, init_theta2, init_theta3],
+                                   y, alpha=0.01)
+
+    # Make a prediction file from the Kaggle test file
+    mp.predict_titanic_nng(thetas) # Change this
+
 
 #simple_logistic_regression()
 #logistic_regression()
-neural_network()
+#neural_network()
+neural_network_general()

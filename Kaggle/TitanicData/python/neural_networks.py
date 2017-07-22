@@ -380,7 +380,7 @@ def train(X, init_theta1, init_theta2, y, alpha=0.1):
     ----------
     X : 2D numpy array
         The training examples, separated by row.
-    init_theta1 : 1D numpy array
+    init_theta1 : 2D numpy array
         Initial weights for the first (input) layer.
     init_theta2 : 1D numpy array
         Initial weights for the second (hidden) layer.
@@ -402,8 +402,7 @@ def train(X, init_theta1, init_theta2, y, alpha=0.1):
     """
     # Experiment with these values
     MAX_ITER = 5000
-    LAMBDAS = [0, 0.003, 0.01, 0.03, 0.1, 0.3]
-    alpha = 0.005
+    LAMBDAS = [0]
 
     # Total number of training examples available
     m = X.shape[0]
@@ -438,21 +437,21 @@ def train(X, init_theta1, init_theta2, y, alpha=0.1):
 
     # Iterate through all the values of lambda and train the neural
     # network using a range of lambdas
-    for i in range(0, len(LAMBDAS)):
-        theta1, theta2, costs = train_neural_network(X_train, init_theta1,
-                                                     init_theta2, y_train,
-                                                     alpha=alpha, l=LAMBDAS[i],
-                                                     max_iter=MAX_ITER)
-        performance.append(accuracy_rate(X_cv, theta1, theta2, y_cv))
-        print("Finished testing lambda =", LAMBDAS[i])
-        print("Performance is", performance[-1])
-
-    i = max(range(len(performance)), key=performance.__getitem__)
-    l = LAMBDAS[i]
+    # for i in range(0, len(LAMBDAS)):
+    #     theta1, theta2, costs = train_neural_network(X_train, init_theta1,
+    #                                                  init_theta2, y_train,
+    #                                                  alpha=alpha, l=LAMBDAS[i],
+    #                                                  max_iter=MAX_ITER)
+    #     performance.append(accuracy_rate(X_cv, theta1, theta2, y_cv))
+    #     print("Finished testing lambda =", LAMBDAS[i])
+    #     print("Performance is", performance[-1])
+    #
+    # i = max(range(len(performance)), key=performance.__getitem__)
+    # l = LAMBDAS[i]
 
     theta1, theta2, costs = train_neural_network(X_train, init_theta1,
                                                  init_theta2, y_train,
-                                                 alpha=alpha,
+                                                 alpha=alpha, l=0,
                                                  max_iter=MAX_ITER)
     train_accuracy = accuracy_rate(X_train, theta1, theta2, y_train)
     cv_accuracy = accuracy_rate(X_cv, theta1, theta2, y_cv)
@@ -460,7 +459,7 @@ def train(X, init_theta1, init_theta2, y, alpha=0.1):
 
     print("Finished training")
     print("-----------------")
-    print("The optimum value of lambda:", l)
+    print("The optimum value of lambda:", 0)
     print("Accuracy on the training set:", train_accuracy)
     print("Accuracy on the cross-validation set:", cv_accuracy)
     print("Accuracy on the test set:", test_accuracy)
